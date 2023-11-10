@@ -194,30 +194,13 @@ class _OptionsScreenState extends State<OptionsScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
+                //crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10)),
-                            color: AppTheme().numberOfCommentsColor,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Text('45k comments'),
-                          ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Expanded(
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 80),
                     child: ListView.builder(
+                      shrinkWrap: true,
                       itemCount: Samplecomments.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
@@ -235,11 +218,41 @@ class _OptionsScreenState extends State<OptionsScreen> {
                     ),
                   ),
                   //Spacer(),
-                  Divider(
-                    thickness: 1,
-                    color: AppTheme().commentIconColor,
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Column(
+                      children: [
+                        Divider(
+                          thickness: 1,
+                          color: AppTheme().commentIconColor,
+                        ),
+                        CommetTextField(context)
+                      ],
+                    ),
                   ),
-                  CommetTextField(context)
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10)),
+                              color: AppTheme().numberOfCommentsColor,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text('45k comments'),
+                            ))
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

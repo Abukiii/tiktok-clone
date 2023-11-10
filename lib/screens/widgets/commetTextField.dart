@@ -23,28 +23,25 @@ Widget CommetTextField(context) {
             borderRadius: BorderRadius.all(Radius.circular(30))),
         child: SizedBox(
           height: 100,
-          child: Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Icon(Icons.emoji_emotions_outlined,
-                        color: AppTheme().commentIconColor, size: 30),
-                  ),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Add Comment',
-                        labelStyle: TextStyle(color: Colors.black),
-                      ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Icon(Icons.emoji_emotions_outlined,
+                      color: AppTheme().commentIconColor, size: 30),
+                ),
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Add Comment',
+                      labelStyle: TextStyle(color: Colors.black),
                     ),
                   ),
-                  Icon(Icons.send,
-                      color: AppTheme().commentLinkColor, size: 30),
-                ],
-              ),
+                ),
+                Icon(Icons.send, color: AppTheme().commentLinkColor, size: 30),
+              ],
             ),
           ),
         ),

@@ -98,8 +98,12 @@ class _OptionsScreenState extends State<OptionsScreen> {
                             children: [
                               Text(
                                 widget.time,
-                                style: TextStyle(
-                                    fontSize: 12.0, color: Colors.grey),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(
+                                        color: AppTheme().overlay,
+                                        fontWeight: FontWeight.bold),
                               ),
                               if (widget.caption.length > 150)
                                 !showMore
@@ -152,14 +156,9 @@ class _OptionsScreenState extends State<OptionsScreen> {
                       const Text('1123'),
                       const SizedBox(height: 20),
                       const Icon(Icons.share),
-                      // Transform(
-                      //   transform: Matrix4.rotationZ(5.8),
-                      //   child: Icon(Icons.send),
-                      // ),
                       const SizedBox(height: 50),
                       GestureDetector(
                           onTap: () {
-                            print("Hello");
                             viewProvider.makefullscreen();
                           },
                           child: const Icon(Icons.arrow_back)),

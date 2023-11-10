@@ -56,7 +56,9 @@ class _ContentScreenState extends State<ContentScreen> {
         chewieController != null &&
                 chewieController!.videoPlayerController.value.isInitialized
             ? GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  viewProvider.hidemenu();
+                },
                 child: Chewie(
                   controller: chewieController!,
                 ),

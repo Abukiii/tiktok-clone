@@ -7,13 +7,11 @@ class ViewController with ChangeNotifier {
   showmenu() {
     menuOpen = true;
     notifyListeners();
-    print(menuOpen);
   }
 
   hidemenu() {
     menuOpen = false;
     notifyListeners();
-    print(menuOpen);
   }
 
   makefullscreen() {

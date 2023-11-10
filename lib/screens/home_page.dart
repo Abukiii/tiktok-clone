@@ -15,16 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> videos = [
-    'https://assets.mixkit.co/videos/preview/mixkit-taking-photos-from-different-angles-of-a-model-34421-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-young-mother-with-her-little-daughter-decorating-a-christmas-tree-39745-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-mother-with-her-little-daughter-eating-a-marshmallow-in-nature-39764-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-winter-fashion-cold-looking-woman-concept-video-39874-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-womans-feet-splashing-in-the-pool-1261-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4'
-  ];
-
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Home'),
     Text('Explore'),
@@ -40,29 +30,36 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
           child: Stack(
         children: [
-          Swiper(
-            itemBuilder: (BuildContext context, int index) {
-              return ContentScreen(
-                  url: Uri.parse(videos[index]),
-                  caption: Samplevideos[index].caption,
-                  time: Samplevideos[index].time);
+          GestureDetector(
+            onTap: () {
+              viewProvider.hidemenu();
             },
-            itemCount: Samplevideos.length,
-            fade: 1.0,
-            scrollDirection: Axis.vertical,
+            child: Swiper(
+              itemBuilder: (BuildContext context, int index) {
+                return ContentScreen(
+                    url: Uri.parse(Samplevideos[index].videoLink),
+                    caption: Samplevideos[index].caption,
+                    time: Samplevideos[index].time);
+              },
+              itemCount: Samplevideos.length,
+              fade: 1.0,
+              scrollDirection: Axis.vertical,
+            ),
           ),
           viewProvider.fulscreen
               ? SizedBox()
               : Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(15.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       GestureDetector(
                           onTap: () {
-                            // showMenuAlert(context);
+                            viewProvider.showmenu();
                           },
-                          child: Icon(Icons.menu))
+                          child: Container(
+                              color: AppTheme().white,
+                              child: Icon(Icons.menu, color: AppTheme().black)))
                     ],
                   ),
                 ),
@@ -79,6 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
           viewProvider.menuOpen
               ? Positioned(left: 0, top: 0, child: MenuWidget())
               : SizedBox(),
+
+          // Visibility(
+          //     visible: viewProvider.menuOpen,
+          //     child: Positioned(left: 0, top: 0, child: MenuWidget())),
+
           viewProvider.fulscreen
               ? SizedBox()
               : Positioned(

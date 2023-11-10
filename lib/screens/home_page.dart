@@ -76,11 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
           viewProvider.menuOpen
               ? Positioned(left: 0, top: 0, child: MenuWidget())
               : SizedBox(),
-
-          // Visibility(
-          //     visible: viewProvider.menuOpen,
-          //     child: Positioned(left: 0, top: 0, child: MenuWidget())),
-
           viewProvider.fulscreen
               ? SizedBox()
               : Positioned(

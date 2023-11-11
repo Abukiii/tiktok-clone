@@ -66,6 +66,7 @@ class _CommentWithEmojiState extends State<CommentWithEmoji> {
                             viewProvider.emoji
                                 ? viewProvider.hideEmoji()
                                 : viewProvider.showEmoji();
+                            _focusNode.unfocus();
                           },
                           child: Icon(
                               viewProvider.emoji

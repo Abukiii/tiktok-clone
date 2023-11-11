@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:video_app/controller/viewController.dart';
 import 'package:video_app/screens/reply_page.dart';
 import 'package:video_app/shared/theme_data.dart';
+import 'package:provider/provider.dart';
 
 Widget comment(comment, name, username, time, profile, context, reply, icons) {
   return Container(
@@ -73,10 +75,12 @@ Widget comment(comment, name, username, time, profile, context, reply, icons) {
                       onPressed: () {
                         // showBottomSheett(context);
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ReplyScreen()),
-                        );
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChangeNotifierProvider(
+                                  create: (context) => ViewController(),
+                                  child: ReplyScreen()),
+                            ));
                       },
                     ),
                     Text('15',

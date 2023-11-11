@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ViewController with ChangeNotifier {
   bool menuOpen = false;
   bool fulscreen = false;
+  bool emoji = false;
 
   showmenu() {
     menuOpen = true;
@@ -21,6 +22,16 @@ class ViewController with ChangeNotifier {
 
   clearfullscreen() {
     fulscreen = false;
+    notifyListeners();
+  }
+
+  showEmoji() {
+    emoji = true;
+    notifyListeners();
+  }
+
+  hideEmoji() {
+    emoji = false;
     notifyListeners();
   }
 }

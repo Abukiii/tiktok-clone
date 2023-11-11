@@ -35,8 +35,8 @@ Widget CommetTextField(context) {
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(
-                      labelText: 'Add Comment',
-                      labelStyle: TextStyle(color: Colors.black),
+                      hintText: 'Add Comment',
+                      hintStyle: TextStyle(color: Colors.grey),
                     ),
                   ),
                 ),

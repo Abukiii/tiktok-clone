@@ -6,8 +6,11 @@ class MenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.45,
-      width: MediaQuery.of(context).size.width * 0.7,
-      color: Colors.white,
+      width: MediaQuery.of(context).size.width * 0.3,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       child: ListView(
         children: [
           buildListTile('assets/images/Vector(6).png', Colors.blue,
@@ -41,7 +44,7 @@ class MenuWidget extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .bodyLarge!
-            .copyWith(color: AppTheme().black),
+            .copyWith(color: AppTheme().menuComponents),
       ),
       onTap: () {
         // Handle list tile tap
@@ -57,7 +60,7 @@ void showAlertDialog(BuildContext context) {
       return Stack(
         children: [
           Positioned(
-            top: 20,
+            top: 25,
             left: -40,
             child: AlertDialog(
               contentPadding: EdgeInsets.zero,

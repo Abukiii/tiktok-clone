@@ -24,6 +24,7 @@ class AppTheme {
   Color black = Color.fromARGB(255, 0, 0, 0);
   Color white = Color.fromARGB(255, 255, 255, 255);
   Color captionback = Color(0xFF4C4243);
+  Color menuComponents = Color(0xFF534D4D);
 
   Color replyname = Color(0xFFFFBB00);
   Color lineInreply = Color(0xFF886826);

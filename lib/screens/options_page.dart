@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:video_app/Model/comment.dart';
 import 'package:video_app/controller/viewController.dart';
 import 'package:video_app/screens/widgets/commentWidget.dart';
+import 'package:video_app/screens/widgets/commetTextField%20Withemoji.dart';
 import 'package:video_app/screens/widgets/commetTextField.dart';
 import 'package:video_app/shared/theme_data.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class _OptionsScreenState extends State<OptionsScreen> {
         Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+              padding: const EdgeInsets.only(left: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -39,8 +40,14 @@ class _OptionsScreenState extends State<OptionsScreen> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      color: Color(0xFFC4C4C4)
-                          .withOpacity(0.3), // Adjust opacity as needed
+
+                      border: Border.all(
+                        color: AppTheme()
+                            .commentTimeColor, // Set the border color here
+                      ),
+                      color: AppTheme()
+                          .captionback
+                          .withOpacity(0.6), // Adjust opacity as needed
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -65,16 +72,18 @@ class _OptionsScreenState extends State<OptionsScreen> {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10)),
                                           ),
-                                          child: const Row(
+                                          child: Row(
                                             children: [
                                               Text(
                                                 '...Less',
                                                 style: TextStyle(
                                                     color: Colors.green),
                                               ),
-                                              Icon(
-                                                Icons.arrow_upward,
-                                              )
+                                              Image.asset(
+                                                'assets/images/down.png', // Replace with the actual path to your book icon
+                                                height: 15,
+                                                width: 20,
+                                              ),
                                             ],
                                           ),
                                         ))
@@ -102,7 +111,7 @@ class _OptionsScreenState extends State<OptionsScreen> {
                                     .textTheme
                                     .bodySmall!
                                     .copyWith(
-                                        color: AppTheme().overlay,
+                                        color: AppTheme().time,
                                         fontWeight: FontWeight.bold),
                               ),
                               if (widget.caption.length > 150)
@@ -115,16 +124,18 @@ class _OptionsScreenState extends State<OptionsScreen> {
                                         },
                                         child: Container(
                                           color: Colors.black.withOpacity(0.2),
-                                          child: const Row(
+                                          child: Row(
                                             children: [
                                               Text(
                                                 '...More',
                                                 style: TextStyle(
                                                     color: Colors.green),
                                               ),
-                                              Icon(
-                                                Icons.arrow_upward,
-                                              )
+                                              Image.asset(
+                                                'assets/images/up.png', // Replace with the actual path to your book icon
+                                                height: 15,
+                                                width: 20,
+                                              ),
                                             ],
                                           ),
                                         ))
@@ -142,26 +153,61 @@ class _OptionsScreenState extends State<OptionsScreen> {
                         radius: 20,
                       ),
                       const SizedBox(height: 20),
-                      const Icon(Icons.book),
+                      InkWell(
+                        onTap: () {
+                          // Your onPressed action here
+                        },
+                        child: Image.asset(
+                          'assets/images/book.png', // Replace with the actual path to your book icon
+                          height: 30,
+                          width: 30,
+                        ),
+                      ),
                       const SizedBox(height: 20),
-                      IconButton(
-                        icon: const Icon(Icons.comment),
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           showBottomSheett(context);
                         },
+                        child: Image.asset(
+                          'assets/images/Vector(5).png',
+                          height: 30,
+                          width: 30,
+                        ),
                       ),
-                      const Text('601k'),
+                      const Text('45k'),
                       const SizedBox(height: 20),
-                      const Icon(Icons.favorite),
-                      const Text('1123'),
+                      InkWell(
+                        onTap: () {
+                          // Your onPressed action here
+                        },
+                        child: Image.asset(
+                          'assets/images/likeh.png', // Replace with the actual path to your book icon
+                          height: 30,
+                          width: 30,
+                        ),
+                      ),
+                      const Text('45K'),
                       const SizedBox(height: 20),
-                      const Icon(Icons.share),
+                      InkWell(
+                        onTap: () {
+                          // Your onPressed action here
+                        },
+                        child: Image.asset(
+                          'assets/images/share.png', // Replace with the actual path to your book icon
+                          height: 30,
+                          width: 30,
+                        ),
+                      ),
                       const SizedBox(height: 50),
                       GestureDetector(
                           onTap: () {
                             viewProvider.makefullscreen();
                           },
-                          child: const Icon(Icons.arrow_back)),
+                          child: Image.asset(
+                            'assets/images/full.png',
+                            height: 60,
+                            width: 60,
+                          )),
                     ],
                   )
                 ],
@@ -228,7 +274,10 @@ class _OptionsScreenState extends State<OptionsScreen> {
                           thickness: 1,
                           color: AppTheme().commentIconColor,
                         ),
-                        CommetTextField(context)
+                        //CommetTextField(context)
+                        ChangeNotifierProvider(
+                            create: (context) => ViewController(),
+                            child: CommentWithEmoji())
                       ],
                     ),
                   ),

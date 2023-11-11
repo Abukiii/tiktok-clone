@@ -69,11 +69,8 @@ Widget comment(comment, name, username, time, profile, context, reply, icons) {
           icons
               ? Row(
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.comment,
-                          color: AppTheme().commentIconColor),
-                      onPressed: () {
-                        // showBottomSheett(context);
+                    InkWell(
+                      onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -82,21 +79,48 @@ Widget comment(comment, name, username, time, profile, context, reply, icons) {
                                   child: ReplyScreen()),
                             ));
                       },
+                      child: Image.asset(
+                        'assets/images/comment.png', // Replace with the actual path to your book icon
+                        height: 30,
+                        width: 30,
+                      ),
                     ),
+                    // IconButton(
+                    //   icon: Icon(Icons.comment,
+                    //       color: AppTheme().commentIconColor),
+                    //   onPressed: () {
+                    //     // showBottomSheett(context);
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //           builder: (context) => ChangeNotifierProvider(
+                    //               create: (context) => ViewController(),
+                    //               child: ReplyScreen()),
+                    //         ));
+                    //   },
+                    // ),
                     Text('15',
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall!
                             .copyWith(color: AppTheme().commentTextColor)),
                     const SizedBox(width: 20),
-                    Icon(Icons.favorite, color: AppTheme().commentIconColor),
+                    Image.asset(
+                      'assets/images/likec.png', // Replace with the actual path to your book icon
+                      height: 25,
+                      width: 25,
+                    ),
                     Text('7k',
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall!
                             .copyWith(color: AppTheme().commentTextColor)),
                     const SizedBox(width: 20),
-                    Icon(Icons.flag, color: AppTheme().commentIconColor),
+                    Image.asset(
+                      'assets/images/flag.png', // Replace with the actual path to your book icon
+                      height: 20,
+                      width: 20,
+                    )
                   ],
                 )
               : SizedBox(),

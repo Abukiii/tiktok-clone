@@ -34,11 +34,11 @@ Widget CommetTextField(context) {
                 ),
                 Expanded(
                   child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Add Comment',
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                  ),
+                      decoration: InputDecoration(
+                        hintText: 'Add Comment',
+                        hintStyle: TextStyle(color: Colors.grey),
+                      ),
+                      style: TextStyle(color: AppTheme().black)),
                 ),
                 Icon(Icons.send, color: AppTheme().commentLinkColor, size: 30),
               ],

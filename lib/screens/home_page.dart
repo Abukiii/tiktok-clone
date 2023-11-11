@@ -3,6 +3,7 @@ import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:video_app/Model/videos.dart';
 import 'package:video_app/controller/viewController.dart';
 import 'package:video_app/screens/content_page.dart';
+import 'package:video_app/screens/widgets/appBar.dart';
 import 'package:video_app/screens/widgets/menuWidget.dart';
 import 'package:video_app/shared/theme_data.dart';
 import 'package:provider/provider.dart';
@@ -27,24 +28,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final viewProvider = Provider.of<ViewController>(context);
     return Scaffold(
+      appBar: CustomAppBar(),
       body: SafeArea(
           child: Stack(
         children: [
-          GestureDetector(
-            onTap: () {
-              viewProvider.hidemenu();
+          Swiper(
+            itemBuilder: (BuildContext context, int index) {
+              return ContentScreen(
+                  url: Uri.parse(Samplevideos[index].videoLink),
+                  caption: Samplevideos[index].caption,
+                  time: Samplevideos[index].time);
             },
-            child: Swiper(
-              itemBuilder: (BuildContext context, int index) {
-                return ContentScreen(
-                    url: Uri.parse(Samplevideos[index].videoLink),
-                    caption: Samplevideos[index].caption,
-                    time: Samplevideos[index].time);
-              },
-              itemCount: Samplevideos.length,
-              fade: 1.0,
-              scrollDirection: Axis.vertical,
-            ),
+            itemCount: Samplevideos.length,
+            fade: 1.0,
+            scrollDirection: Axis.vertical,
           ),
           viewProvider.fulscreen
               ? SizedBox()
@@ -55,11 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       GestureDetector(
                           onTap: () {
-                            viewProvider.showmenu();
+                            showAlertDialog(context);
                           },
-                          child: Container(
-                              color: AppTheme().white,
-                              child: Icon(Icons.menu, color: AppTheme().black)))
+                          child: Image.asset(
+                            'assets/images/Menu.png',
+                            height: 40,
+                            width: 40,
+                          ))
                     ],
                   ),
                 ),
@@ -71,7 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: () {
                         viewProvider.clearfullscreen();
                       },
-                      child: Icon(Icons.arrow_forward)))
+                      child: Image.asset(
+                        'assets/images/fullo.png',
+                        height: 60,
+                        width: 60,
+                      )))
               : SizedBox(),
           viewProvider.menuOpen
               ? Positioned(left: 0, top: 0, child: MenuWidget())
@@ -88,16 +91,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       type: BottomNavigationBarType.fixed,
                       items: <BottomNavigationBarItem>[
                         BottomNavigationBarItem(
-                          icon: Icon(Icons.home, size: 40),
+                          icon: Image.asset(
+                            'assets/images/Vector(1).png', // Replace with the actual path to your home icon
+                            height: 30,
+                            width: 30,
+                          ),
                           label: 'Apps',
                         ),
                         BottomNavigationBarItem(
                           icon: Stack(
                             clipBehavior: Clip.none,
                             children: [
-                              Icon(
-                                Icons.explore,
-                                size: 40,
+                              Image.asset(
+                                'assets/images/Vector(2).png', // Replace with the actual path to your explore icon
+                                height: 30,
+                                width: 30,
                               ),
                               Positioned(
                                 right: -7,
@@ -105,8 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Container(
                                   padding: EdgeInsets.all(4),
                                   decoration: BoxDecoration(
-                                    color: AppTheme()
-                                        .overlay, // You can customize the color
+                                    color: AppTheme().overlay,
                                     shape: BoxShape.circle,
                                   ),
                                   child: Text(
@@ -123,15 +130,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           label: 'Qucon',
                         ),
                         BottomNavigationBarItem(
-                          icon: Icon(Icons.person_2_outlined, size: 40),
+                          icon: Image.asset(
+                            'assets/images/Vector(3).png', // Replace with the actual path to your person icon
+                            height: 30,
+                            width: 30,
+                          ),
                           label: 'Zaddy',
                         ),
                         BottomNavigationBarItem(
-                          icon: Icon(Icons.telegram_rounded, size: 40),
+                          icon: Image.asset(
+                            'assets/images/Vector(4).png', // Replace with the actual path to your telegram icon
+                            height: 30,
+                            width: 30,
+                          ),
                           label: 'Organize',
                         ),
                         BottomNavigationBarItem(
-                          icon: Icon(Icons.person, size: 40),
+                          icon: Image.asset(
+                            'assets/images/Profile.png', // Replace with the actual path to your profile icon
+                            height: 30,
+                            width: 30,
+                          ),
                           label: 'Profile',
                         ),
                       ],

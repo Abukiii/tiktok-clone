@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_app/Model/comment.dart';
 import 'package:video_app/controller/viewController.dart';
+import 'package:video_app/screens/widgets/appBar.dart';
 import 'package:video_app/screens/widgets/commentWidget.dart';
 import 'package:video_app/screens/widgets/commetTextField%20Withemoji.dart';
 import 'package:video_app/screens/widgets/commetTextField.dart';
@@ -15,6 +16,7 @@ class ReplyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewProvider = Provider.of<ViewController>(context);
     return Scaffold(
+      appBar: CustomAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -26,7 +28,7 @@ class ReplyScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                        const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -34,9 +36,10 @@ class ReplyScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context).pop();
                           },
-                          child: Icon(
-                            Icons.arrow_back_outlined,
-                            color: Colors.black,
+                          child: Image.asset(
+                            'assets/images/back.png', // Replace with the actual path to your book icon
+                            height: 25,
+                            width: 25,
                           ),
                         ),
                         Padding(
@@ -92,24 +95,22 @@ class ReplyScreen extends StatelessWidget {
                                         .textTheme
                                         .bodySmall!
                                         .copyWith(
-                                            color: AppTheme().ActiveIcon,
+                                            color: AppTheme().replyname,
                                             fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
                             ),
-                            //CommetTextField(context),
-                            // EmojiPickerExample()
                             CommentWithEmoji(),
                           ],
                         ),
                         Positioned(
-                            left: 30,
-                            top: 55,
+                            left: 32,
+                            top: 58,
                             child: Container(
-                              color: Colors.black,
+                              color: AppTheme().lineInreply,
                               width: 2,
-                              height: 125,
+                              height: 120,
                             ))
                       ],
                     ),

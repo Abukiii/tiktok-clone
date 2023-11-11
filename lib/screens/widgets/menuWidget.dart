@@ -10,29 +10,31 @@ class MenuWidget extends StatelessWidget {
       color: Colors.white,
       child: ListView(
         children: [
-          buildListTile(Icons.add, Colors.blue, 'Post a Seequl', context),
-          buildListTile(
-              Icons.favorite, AppTheme().overlay, 'View your likes', context),
-          buildListTile(
-              Icons.person, AppTheme().overlay, 'Your Seequl posts', context),
-          buildListTile(Icons.book, AppTheme().commentIconColor,
-              'Reference contribution', context),
-          buildListTile(Icons.timelapse, AppTheme().overlay,
+          buildListTile('assets/images/Vector(6).png', Colors.blue,
+              'Post a Seequl', context),
+          buildListTile('assets/images/Vector(7).png', AppTheme().overlay,
+              'View your likes', context),
+          buildListTile('assets/images/Vector(8).png', AppTheme().overlay,
+              'Your Seequl posts', context),
+          buildListTile('assets/images/reference.png',
+              AppTheme().commentIconColor, 'Reference contribution', context),
+          buildListTile('assets/images/Vector(9).png', AppTheme().overlay,
               'Hashtag challenges', context),
-          buildListTile(Icons.notifications, AppTheme().commentLinkColor,
-              'Notifications', context),
-          buildListTile(Icons.help, const Color.fromARGB(255, 211, 62, 62),
-              'About SeeQul', context),
+          buildListTile('assets/images/Vector(10).png',
+              AppTheme().commentLinkColor, 'Notifications', context),
+          buildListTile('assets/images/Vector(11).png',
+              const Color.fromARGB(255, 211, 62, 62), 'About SeeQul', context),
         ],
       ),
     );
   }
 
-  ListTile buildListTile(IconData icon, color, String name, context) {
+  ListTile buildListTile(String image, color, String name, context) {
     return ListTile(
-      leading: Icon(
-        icon,
-        color: color,
+      leading: Image.asset(
+        image, // Replace with the actual path to your book icon
+        height: 30,
+        width: 30,
       ),
       title: Text(
         name,
@@ -46,4 +48,25 @@ class MenuWidget extends StatelessWidget {
       },
     );
   }
+}
+
+void showAlertDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Stack(
+        children: [
+          Positioned(
+            top: 20,
+            left: -40,
+            child: AlertDialog(
+              contentPadding: EdgeInsets.zero,
+              clipBehavior: Clip.none,
+              content: MenuWidget(),
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }
